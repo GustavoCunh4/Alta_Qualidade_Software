@@ -11,6 +11,7 @@ from .models import Customer
 
 class CustomerRepository(Protocol):
     """Contrato para persistência de clientes."""
+
     # pylint: disable=too-few-public-methods, unnecessary-pass
 
     def save(self, customer: Customer) -> None:
@@ -20,6 +21,7 @@ class CustomerRepository(Protocol):
 
 class BaseFileRepository(ABC):
     """Comportamentos comuns a repositórios baseados em arquivo."""
+
     # pylint: disable=too-few-public-methods
 
     def __init__(self, file_path: Path) -> None:
@@ -30,6 +32,7 @@ class BaseFileRepository(ABC):
 
 class FileCustomerRepository(BaseFileRepository, CustomerRepository):
     """Persiste clientes em um arquivo texto simples."""
+
     # pylint: disable=too-few-public-methods
 
     def save(self, customer: Customer) -> None:

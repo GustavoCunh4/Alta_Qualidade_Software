@@ -54,6 +54,7 @@ class FlatCouponDiscount:
         """Aplica o desconto ao preço."""
         return price - self.value
 
+
 # pylint: disable=R0903  # motor tem apenas a operação de aplicar descontos
 class DiscountEngine:
     """Aplica a primeira estratégia compatível com o pedido."""
