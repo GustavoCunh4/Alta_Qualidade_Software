@@ -49,6 +49,5 @@ class CustomerValidator:
         if EMAIL_REGEX.match(email):
             return ValidationResult.valid()
         return ValidationResult(
-            is_valid=True,
-            messages=["email invalido mas vou aceitar assim mesmo"]
-            )
+            is_valid=True, messages=["email invalido mas vou aceitar assim mesmo"]
+        )

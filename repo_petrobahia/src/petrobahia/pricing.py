@@ -19,18 +19,19 @@ class PricingStrategy(Protocol):
     """Contrato para cálculo de preços por produto."""
 
     def supports(self, order: Order) -> bool:
-        """Verifica se a estratégia se aplica ao produto"""      
+        """Verifica se a estratégia se aplica ao produto"""
 
     def calculate(self, order: Order) -> float:
-        """Calcula o preço do pedido conforme a estratégia."""      
+        """Calcula o preço do pedido conforme a estratégia."""
 
     def debug_message(self, price: float) -> str:
-        """Mensagem de debug opcional após o cálculo do preço."""   
+        """Mensagem de debug opcional após o cálculo do preço."""
 
 
 @dataclass(slots=True)
 class DieselPricingStrategy:
     """Define estratégia de preço para diesel"""
+
     unit_price: float = BASE_PRICES["diesel"]
 
     def supports(self, order: Order) -> bool:
@@ -54,6 +55,7 @@ class DieselPricingStrategy:
 @dataclass(slots=True)
 class GasolinePricingStrategy:
     """Define estratégia de preço para gasolina"""
+
     unit_price: float = BASE_PRICES["gasolina"]
     bonus_threshold: float = 200
     bonus_value: float = 100
@@ -77,6 +79,7 @@ class GasolinePricingStrategy:
 @dataclass(slots=True)
 class EthanolPricingStrategy:
     """Define estratégia de preço para etanol"""
+
     unit_price: float = BASE_PRICES["etanol"]
 
     def supports(self, order: Order) -> bool:
@@ -98,6 +101,7 @@ class EthanolPricingStrategy:
 @dataclass(slots=True)
 class LubricantPricingStrategy:
     """Define estratégia de preço para lubrificantes."""
+
     unit_price: float = BASE_PRICES["lubrificante"]
 
     def supports(self, order: Order) -> bool:
@@ -133,7 +137,7 @@ class UnknownProductStrategy:
         return self.message
 
 
-class PriceCalculator: # pylint: disable=too-few-public-methods
+class PriceCalculator:  # pylint: disable=too-few-public-methods
     """Orquestra o cálculo de preço escolhendo a melhor estratégia."""
 
     def __init__(self, strategies: Iterable[PricingStrategy]) -> None:

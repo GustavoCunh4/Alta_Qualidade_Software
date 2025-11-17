@@ -40,7 +40,14 @@ class OrderProcessor:
         price = self._apply_rounding(order, price)
         quantity_to_display = self._format_quantity(order.quantity)
 
-        print("pedido ok:", order.customer_name, order.product, quantity_to_display, "=>", price)
+        print(
+            "pedido ok:",
+            order.customer_name,
+            order.product,
+            quantity_to_display,
+            "=>",
+            price,
+        )
         return price
 
     @staticmethod
@@ -86,4 +93,6 @@ def build_default_order_processor() -> OrderProcessor:
             FlatCouponDiscount("LUB2", value=2, required_product="lubrificante"),
         ]
     )
-    return OrderProcessor(price_calculator=price_calculator, discount_engine=discount_engine)
+    return OrderProcessor(
+        price_calculator=price_calculator, discount_engine=discount_engine
+    )
