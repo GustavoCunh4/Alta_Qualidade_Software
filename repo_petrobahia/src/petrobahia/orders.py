@@ -5,16 +5,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Mapping
 
-from .discounts import DiscountEngine, FlatCouponDiscount, PercentageCouponDiscount
+from .discounts import (DiscountEngine, FlatCouponDiscount,
+                        PercentageCouponDiscount)
 from .models import Order
-from .pricing import (
-    DieselPricingStrategy,
-    EthanolPricingStrategy,
-    GasolinePricingStrategy,
-    LubricantPricingStrategy,
-    PriceCalculator,
-    UnknownProductStrategy,
-)
+from .pricing import (DieselPricingStrategy, EthanolPricingStrategy,
+                      GasolinePricingStrategy, LubricantPricingStrategy,
+                      PriceCalculator, UnknownProductStrategy)
 
 
 @dataclass(slots=True)
