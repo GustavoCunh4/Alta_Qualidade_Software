@@ -25,6 +25,7 @@ class OrderProcessor:
     discount_engine: DiscountEngine
 
     def process(self, payload: Mapping[str, object]) -> float:
+        """Processa o pedido e retorna o preço final."""
         order = self._map_payload(payload)
         if order.quantity == 0:
             print("qtd zero, retornando 0")

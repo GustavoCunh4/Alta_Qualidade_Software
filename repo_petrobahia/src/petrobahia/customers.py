@@ -18,6 +18,8 @@ class CustomerService:
     validator: CustomerValidator
 
     def register(self, payload: Mapping[str, str]) -> bool:
+        """Valida os dados do cliente, salva no repositório 
+        e retorna True quando o cadastro é realizado."""
         registration_result = self.validator.validate_registration(dict(payload))
         self._emit_messages(registration_result)
         if not registration_result.is_valid:

@@ -18,13 +18,16 @@ class ValidationResult:
 
     @classmethod
     def valid(cls) -> "ValidationResult":
+        """Retorna um resultado válido sem mensagens."""
         return cls(is_valid=True, messages=[])
 
     @classmethod
     def invalid(cls, *messages: str) -> "ValidationResult":
+        """Retorna um resultado inválido com as mensagens fornecidas."""
         return cls(is_valid=False, messages=list(messages))
 
     def extend(self, messages: Iterable[str]) -> None:
+        """Adiciona mensagens ao resultado de validação."""
         self.messages.extend(messages)
 
 
@@ -34,6 +37,7 @@ class CustomerValidator:
     required_fields = ("nome", "email", "cnpj")
 
     def validate_registration(self, payload: dict) -> ValidationResult:
+        """Valida se todos os campos obrigatórios estão presentes."""
         missing = [field for field in self.required_fields if field not in payload]
         if missing:
             return ValidationResult.invalid("faltou campo")
@@ -41,6 +45,10 @@ class CustomerValidator:
         return ValidationResult.valid()
 
     def validate_email(self, email: str) -> ValidationResult:
+        """Valida o formato do email fornecido."""
         if EMAIL_REGEX.match(email):
             return ValidationResult.valid()
-        return ValidationResult(is_valid=True, messages=["email invalido mas vou aceitar assim mesmo"])
+        return ValidationResult(
+            is_valid=True,
+            messages=["email invalido mas vou aceitar assim mesmo"]
+            )
