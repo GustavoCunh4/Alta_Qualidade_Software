@@ -1,7 +1,13 @@
+"""Módulo principal para processamento de pedidos na PetroBahia."""
 from __future__ import annotations
-
 import sys
 from pathlib import Path
+
+from petrobahia.customers import CustomerService  # noqa: E402
+from petrobahia.orders import build_default_order_processor  # noqa: E402
+from petrobahia.repositories import FileCustomerRepository  # noqa: E402
+from petrobahia.validators import CustomerValidator  # noqa: E402
+
 
 # Garante que o pacote em src esteja disponível sem depender de PYTHONPATH externo.
 BASE_DIR = Path(__file__).resolve().parent
@@ -9,10 +15,10 @@ SRC_DIR = BASE_DIR / "src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from petrobahia.customers import CustomerService  # noqa: E402
-from petrobahia.orders import build_default_order_processor  # noqa: E402
-from petrobahia.repositories import FileCustomerRepository  # noqa: E402
-from petrobahia.validators import CustomerValidator  # noqa: E402
+# from petrobahia.customers import CustomerService  # noqa: E402
+# from petrobahia.orders import build_default_order_processor  # noqa: E402
+# from petrobahia.repositories import FileCustomerRepository  # noqa: E402
+# from petrobahia.validators import CustomerValidator  # noqa: E402
 
 
 CLIENTS_FILE = BASE_DIR / "clientes.txt"
@@ -31,6 +37,7 @@ CLIENTES = [
 
 
 def main() -> None:
+    """Ponto de entrada principal do sistema PetroBahia."""
     print("==== Inicio processamento PetroBahia ====")
 
     customer_service = CustomerService(
