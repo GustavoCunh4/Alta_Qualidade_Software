@@ -42,6 +42,7 @@ repo_petrobahia/
 - **Pontos de extensão (OCP):** estratégias de preço (`PricingStrategy`) e descontos (`DiscountStrategy`) são injetadas e podem receber novas implementações sem alterar código existente.
 - **Modelagem explícita:** `Customer` e `Order` são dataclasses, tornando parâmetros claros e evitando dicionários anônimos em todo o código.
 - **Validação e mensagens consistentes:** o serviço de clientes centraliza mensagens de erro/aviso, mantendo compatibilidade com as mensagens do legado.
+
 - **Persistência desacoplada:** repositórios seguem um protocolo simples (`CustomerRepository`), permitindo substituir o backend de armazenamento sem tocar na lógica de cadastro.
 - **Compatibilidade preservada:** `main.py` imprime as mesmas mensagens observadas no legado, garantindo que relatórios ou integrações existentes continuem funcionando.
 
